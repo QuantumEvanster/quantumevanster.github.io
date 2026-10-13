@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>MAGI SYSTEM TERMINAL - ABOUT (MELCHIOR)</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#ec7420",
+                        "hazard-red": "#a80808",
+                        "surface": "#131313",
+                        "secondary-container": "#f3af00",
+                        "nominal-green": "#50ff10",
+                        "border-dim": "#f06800",
+                        "muted-gray": "#484848",
+                        "text-body": "#b0b0b0",
+                        "primary": "#ffb68e",
+                        "tertiary": "#4de091",
+                        "surface-container-low": "#1b1b1b", "eva-purple": "#9b2cdd", "eva-magenta": "#d22d8d", "eva-crimson": "#cc0000", "eva-cyan": "#00f0ff", "eva-yellow": "#ffe600", "eva-neon": "#00ff66"
+                    },
+                    "fontFamily": {
+                        "body-base": ["IBM Plex Mono"],
+                        "headline-md": ["IBM Plex Mono"],
+                        "status-code": ["IBM Plex Mono"],
+                        "body-sm": ["IBM Plex Mono"],
+                        "headline-lg-mobile": ["IBM Plex Mono"],
+                        "label-caps": ["IBM Plex Mono"],
+                        "headline-lg": ["IBM Plex Mono"]
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "section-gap": "80px",
+                        "panel-padding": "16px",
+                        "margin-mobile": "16px",
+                        "unit": "8px",
+                        "margin-desktop": "24px"
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body
+    class="page-transition-enter text-white font-body-base antialiased min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-black relative">
+    <!-- Watermarks -->
+    <div class="kanji-watermark kanji-watermark-pulse" style="top: 15%; left: 5%;">非常事態</div>
+    <div class="kanji-watermark kanji-watermark-pulse"
+        style="top: 40%; right: 5%; transform: rotate(10deg); animation-delay: 1.5s;">暴走</div>
+    <div class="kanji-watermark kanji-watermark-pulse"
+        style="top: 65%; left: 10%; transform: rotate(-5deg); animation-delay: 3s;">覚醒</div>
+    <div class="kanji-watermark kanji-watermark-pulse"
+        style="top: 85%; right: 15%; transform: rotate(15deg); animation-delay: 4.5s;">使徒</div>
+
+    <!-- TopNavBar -->
+    <nav aria-label="Global Navigation"
+        class="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-gutter h-16 bg-black/90 border-b border-border-dim">
+        <div class="flex items-center gap-2 md:gap-6 relative w-full h-full">
+            <div class="absolute top-1 left-1 text-[8px] text-border-dim font-status-code">SYS-01</div>
+            <div class="absolute bottom-1 left-1 text-[8px] text-border-dim font-status-code">ACT:NOMINAL</div>
+            <a href="index.html"
+                class="font-headline-md text-[16px] md:text-[20px] text-primary-container tracking-widest pl-2 md:pl-4 hover:text-white transition-colors shrink-0">MAGI
+                SYSTEM</a>
+            <div class="hidden md:flex flex-col">
+                <div class="flex gap-4">
+                    <a class="font-status-code text-[14px] font-bold text-tertiary border-b border-tertiary transition-colors uppercase px-2 py-1"
+                        href="about.html">[01] ABOUT</a>
+                    <a class="font-status-code text-[14px] font-bold text-primary hover:text-tertiary transition-colors uppercase border border-transparent hover:border-tertiary px-2 py-1"
+                        href="projects.html">[02] PROJECTS</a>
+                    <a class="font-status-code text-[14px] font-bold text-primary hover:text-tertiary transition-colors uppercase border border-transparent hover:border-tertiary px-2 py-1"
+                        href="contact.html">[03] CONTACT</a>
+                </div>
+                <div class="flex justify-between px-2 text-[9px] text-muted-gray font-status-code mt-[2px] tracking-widest">
+                    <a href="about.html" class="text-tertiary hover:text-white transition-colors uppercase">MELCHIOR</a>
+                    <a href="projects.html" class="hover:text-primary transition-colors uppercase">BALTHASAR</a>
+                    <a href="contact.html" class="hover:text-primary transition-colors uppercase">CASPER</a>
+                </div>
+            </div>
+            <div class="ml-auto pr-2 md:pr-4 flex items-center gap-2 md:gap-4">
+                <div class="text-[10px] text-right text-muted-gray hidden sm:block">
+                    <div class="">SERVER: HYD-01</div>
+                </div>
+                <div
+                    class="font-status-code text-[11px] text-nominal-green font-bold animate-pulse border border-nominal-green px-2 py-1 bg-nominal-green/10 hidden sm:block">
+                    ● ONLINE
+                </div>
+                <button id="mobile-menu-btn"
+                    class="animate-pulse md:hidden font-status-code text-[11px] text-primary-container hover:text-white transition-colors uppercase border border-primary-container px-2 py-1">
+                    SYS_MENU
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay"
+        class="fixed inset-0 bg-black/95 z-[100] flex flex-col justify-center items-center gap-8 translate-x-full transition-transform duration-300">
+        <div class="absolute top-0 left-0 w-full h-2 hazard-stripe"></div>
+        <button id="mobile-menu-close"
+            class="absolute top-4 right-4 text-primary-container hover:text-white border border-primary-container px-4 py-2 font-status-code text-[14px]">CLOSE
+            ×</button>
+        <div class="text-hazard-red text-[40px] font-bold tracking-widest font-headline-md mb-8">SYS_MENU</div>
+        <div class="flex flex-col items-center gap-1">
+            <a class="font-status-code text-[24px] font-bold text-primary hover:text-tertiary transition-colors uppercase"
+                href="about.html">[01] ABOUT</a>
+            <span class="text-[10px] text-border-dim font-status-code uppercase tracking-widest">MELCHIOR</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+            <a class="font-status-code text-[24px] font-bold text-primary hover:text-tertiary transition-colors uppercase"
+                href="projects.html">[02] PROJECTS</a>
+            <span class="text-[10px] text-border-dim font-status-code uppercase tracking-widest">BALTHASAR</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+            <a class="font-status-code text-[24px] font-bold text-primary hover:text-tertiary transition-colors uppercase"
+                href="contact.html">[03] CONTACT</a>
+            <span class="text-[10px] text-border-dim font-status-code uppercase tracking-widest">CASPER</span>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-2 hazard-stripe"></div>
+    </div>
+
+    <main class="relative pt-24 min-h-[calc(100vh-60px)]">
+        <!-- STATUS BAR -->
+        <div class="status-bar-container w-full mb-8">
+            <div class="px-4 border-r border-border-dim shrink-0 z-20 bg-black h-full flex items-center">NODE 01/03
+            </div>
+
+            <!-- Progress Bar Section -->
+            <div class="flex-grow relative h-full flex bg-black overflow-hidden z-10 border-r border-border-dim">
+                <div class="absolute top-0 left-0 h-full magi-chevron-track" style="width: 33.33%;"></div>
+                <!-- The actual progress fill -->
+                <div class="absolute top-0 left-0 h-full magi-chevron-fill" style="width: 33.33%;"></div>
+
+                <!-- Node markers -->
+                <div class="absolute top-0 left-0 w-full h-full flex pointer-events-none">
+                    <div class="flex-1 border-r border-border-dim/30"></div>
+                    <div class="flex-1 border-r border-border-dim/30"></div>
+                    <div class="flex-1"></div>
+                </div>
+            </div>
+        </div>
+
+        <!-- 2. MELCHIOR · 1 (ABOUT) -->
+        <section class="px-margin-mobile md:px-gutter max-w-[1440px] mx-auto pb-section-gap fade-in-up visible"
+            id="about">
+            <div class="magi-panel p-6 relative">
+                <div
+                    class="absolute -top-3 left-4 bg-black border border-border-dim px-2 text-[10px] text-border-dim font-status-code">
+                    [1]─MELCHIOR──
+                </div>
+
+                <div class="flex flex-col border-b border-border-dim/30 pb-4 mb-4">
+                </div>
+                <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 mt-4">
+                    <!-- Col 1: Bio / Decryption Text -->
+                    <div class="flex flex-col gap-2 font-status-code text-[14px] text-white leading-relaxed lowercase"
+                        style="text-transform: uppercase;">
+                        <div class="text-border-dim mb-4 uppercase">ABOUT USER----</div>
+                        <div class="decrypt-text" style="text-transform: none;">I'm an Information Technology Infrastructure student at the University of Minnesota, Twin Cities, graduating in 2029. I like understanding how systems work end to end, from the hardware on the desk to the packets on the wire.
+
+Right now I work in Student Tech Support for UMN's CSE-IT, where I install, configure, and troubleshoot software and hardware for faculty and staff. Outside of work I run a homelab: a Raspberry Pi DNS filter and a Linux server I use to practice hardening, automation, and monitoring.
+
+I'm building toward a career in cybersecurity, with a long-term interest in offensive security and penetration testing. I hold the Google Cybersecurity Professional Certificate and am working through Security+ prep.</div>
+                        <div class="border-t border-border-dim/30 pt-6 mt-4">
+                            <h2 class="font-bold text-secondary-container text-[16px] leading-none uppercase font-status-code mb-6">
+                                [ FIELD_EXPERIENCE // WORK ]
+                            </h2>
+                            <div class="flex flex-col gap-8">
+                                <div class="border-l-2 border-primary-container pl-4 relative">
+                                    <div class="absolute -left-[5px] top-0 w-2 h-2 bg-primary-container rounded-full"></div>
+                                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+                                        <h3 class="font-bold text-white text-[16px] uppercase font-status-code">STUDENT TECH SUPPORT <span class="text-primary-container">— UMN CSE-IT</span></h3>
+                                        <div class="font-status-code text-[12px] bg-nominal-green text-black px-1 font-bold mt-1 md:mt-0">SEP 2026 – PRESENT</div>
+                                    </div>
+                                    <div class="font-status-code text-[10px] text-eva-cyan mb-3">WINDOWS // LINUX // NETWORKING // HARDWARE // DOCUMENTATION</div>
+                                    <ul class="font-body-base text-[14px] text-white/90 list-disc ml-4 space-y-1" style="text-transform: none;">
+                                        <li>Install, configure, and troubleshoot system software, applications, and hardware for CSE staff and faculty.</li>
+                                        <li>Diagnose and resolve system issues, including backup and restore of user files.</li>
+                                        <li>Provide network assistance and maintenance across supported CSE units.</li>
+                                        <li>Maintain technical documentation for supported systems and processes.</li>
+                                    </ul>
+                                </div>
+                                <div class="border-l-2 border-border-dim pl-4 relative">
+                                    <div class="absolute -left-[5px] top-0 w-2 h-2 bg-border-dim rounded-full"></div>
+                                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+                                        <h3 class="font-bold text-white text-[16px] uppercase font-status-code">SHELVING ASSISTANT <span class="text-primary-container">— DAKOTA COUNTY WESCOTT LIBRARY</span></h3>
+                                        <div class="font-status-code text-[12px] bg-nominal-green text-black px-1 font-bold mt-1 md:mt-0">APR 2023 – PRESENT</div>
+                                    </div>
+                                    <div class="font-status-code text-[10px] text-eva-cyan mb-3">CUSTOMER SUPPORT // CATALOG SYSTEMS // INVENTORY</div>
+                                    <ul class="font-body-base text-[14px] text-white/90 list-disc ml-4 space-y-1" style="text-transform: none;">
+                                        <li>Maintained inventory accuracy using library classification systems.</li>
+                                        <li>Provided front-line patron support, helping visitors find resources and navigate digital catalog systems.</li>
+                                    </ul>
+                                </div>
+                                <div class="border-l-2 border-border-dim pl-4 relative">
+                                    <div class="absolute -left-[5px] top-0 w-2 h-2 bg-border-dim rounded-full"></div>
+                                    <div class="flex flex-col md:flex-row md:justify-between md:items-start mb-2">
+                                        <h3 class="font-bold text-white text-[16px] uppercase font-status-code">FRESHMAN REPRESENTATIVE <span class="text-primary-container">— UMN INTERNATIONAL CLUB</span></h3>
+                                        <div class="font-status-code text-[12px] bg-nominal-green text-black px-1 font-bold mt-1 md:mt-0">SEP 2025 – MAY 2026</div>
+                                    </div>
+                                    <div class="font-status-code text-[10px] text-eva-cyan mb-3">LEADERSHIP // EVENTS // OUTREACH</div>
+                                    <ul class="font-body-base text-[14px] text-white/90 list-disc ml-4 space-y-1" style="text-transform: none;">
+                                        <li>Served as a bridge between the freshman class and the executive board.</li>
+                                        <li>Helped organize large cultural events and weekly meetings.</li>
+                                        <li>Drove freshman engagement and recruitment through outreach and social media.</li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                    <!-- Col 2: Capability Matrix & Neural Activity -->
+                    <div class="flex flex-col gap-4 lg:border-l border-border-dim/30 lg:pl-8">
+                        <!-- Top: Capability Matrix -->
+                        <div class="flex flex-col gap-3">
+                            <div class="text-[10px] text-secondary-container mb-2 font-status-code">[CAPABILITY_MATRIX]</div>
+                            
+                            <div class="flex flex-col 2xl:flex-row xl:flex-row lg:flex-col md:flex-col gap-8 items-center xl:items-start mt-2">
+                                <!-- Left: Hex Grid -->
+                                <div class="hex-grid-wrapper relative shrink-0">
+                                    <!-- Row 1 -->
+                                    <div class="hex-row">
+                                        <div class="hex-item tech-hover cursor-pointer" data-tech="Python" data-desc="Scripting & coursework (CSCI 1913)">
+                                            <div class="hex-item-inner"><i class="devicon-python-plain"></i></div>
+                                        </div>
+                                        <div class="hex-item info tech-hover cursor-pointer" data-tech="Java" data-desc="Programming coursework">
+                                            <div class="hex-item-inner"><i class="devicon-java-plain"></i></div>
+                                        </div>
+                                        <div class="hex-item tech-hover cursor-pointer" data-tech="PowerShell" data-desc="Windows admin & automation">
+                                            <div class="hex-item-inner"><i class="devicon-powershell-plain"></i></div>
+                                        </div>
+                                    </div>
+                                    <!-- Row 2 -->
+                                    <div class="hex-row even">
+                                        <div class="hex-item tech-hover cursor-pointer" data-tech="Bash" data-desc="Backup & maintenance scripts on my home server">
+                                            <div class="hex-item-inner"><i class="devicon-bash-plain"></i></div>
+                                        </div>
+                                        <div class="hex-item info tech-hover cursor-pointer" data-tech="Linux" data-desc="Debian/Ubuntu home server administration">
+                                            <div class="hex-item-inner"><i class="devicon-linux-plain"></i></div>
+                                        </div>
+                                        <div class="hex-item tech-hover cursor-pointer" data-tech="Ubuntu" data-desc="Home server & game hosting">
+                                            <div class="hex-item-inner"><i class="devicon-ubuntu-plain"></i></div>
+                                        </div>
+                                        <div class="hex-item tech-hover cursor-pointer" data-tech="Windows" data-desc="Endpoint support at UMN CSE-IT">
+                                            <div class="hex-item-inner"><i class="devicon-windows11-original"></i></div>
+                                        </div>
+                                    </div>
+                                    <!-- Row 3 -->
+                                    <div class="hex-row even">
+                                        <div class="hex-item danger tech-hover cursor-pointer" data-tech="Docker" data-desc="Containerized services in my homelab">
+                                            <div class="hex-item-inner"><i class="devicon-docker-plain"></i></div>
+                                        </div>
+                                        <div class="hex-item tech-hover cursor-pointer" data-tech="Raspberry Pi" data-desc="Pi-hole DNS filtering project">
+                                            <div class="hex-item-inner"><i class="devicon-raspberrypi-line"></i></div>
+                                        </div>
+                                        <div class="hex-item tech-hover cursor-pointer" data-tech="SQL" data-desc="Log queries in the Google Cybersecurity Cert">
+                                            <div class="hex-item-inner"><i class="devicon-mysql-plain"></i></div>
+                                        </div>
+                                    </div>
+                                    <!-- Row 4 -->
+                                    <div class="hex-row even">
+                                        <div class="hex-item tech-hover cursor-pointer" data-tech="Git" data-desc="Version control">
+                                            <div class="hex-item-inner"><i class="devicon-git-plain"></i></div>
+                                        </div>
+                                        <div class="hex-item tech-hover cursor-pointer" data-tech="GitHub" data-desc="github.com/QuantumEvanster">
+                                            <div class="hex-item-inner"><i class="devicon-github-original"></i></div>
+                                        </div>
+                                        <div class="hex-item danger tech-hover cursor-pointer" data-tech="Wireshark" data-desc="Packet capture & traffic analysis">
+                                            <div class="hex-item-inner"><span style="font-size:11px; font-weight:bold;">WSHRK</span></div>
+                                        </div>
+                                        <div class="hex-item tech-hover cursor-pointer" data-tech="Suricata" data-desc="IDS rules & alert analysis">
+                                            <div class="hex-item-inner"><span style="font-size:11px; font-weight:bold;">SURI</span></div>
+                                        </div>
+                                    </div>
+                                    <!-- Row 5 -->
+                                    <div class="hex-row even">
+                                        <div class="hex-item tech-hover cursor-pointer" data-tech="Chronicle" data-desc="SIEM log search & threat detection">
+                                            <div class="hex-item-inner"><span style="font-size:11px; font-weight:bold;">SIEM</span></div>
+                                        </div>
+                                        <div class="hex-item info tech-hover cursor-pointer" data-tech="Wazuh" data-desc="Host monitoring & security events">
+                                            <div class="hex-item-inner"><span style="font-size:11px; font-weight:bold;">WAZUH</span></div>
+                                        </div>
+                                        <div class="hex-item danger tech-hover cursor-pointer" data-tech="Pi-hole" data-desc="Blocked ~40% of flagged DNS requests">
+                                            <div class="hex-item-inner"><span style="font-size:11px; font-weight:bold;">PIHOLE</span></div>
+                                        </div>
+                                    </div>
+                                    
+                                    <!-- Tooltip Element -->
+                                    <div id="tech-tooltip" class="fixed pointer-events-none opacity-0 transition-opacity z-[9999] bg-black border border-border-dim p-2 shadow-[0_0_10px_rgba(236,116,32,0.5)] transform -translate-x-1/2 -translate-y-full w-max max-w-[200px]">
+                                        <div id="tt-title" class="text-[12px] font-bold text-eva-cyan font-status-code uppercase"></div>
+                                        <div id="tt-desc" class="text-[10px] text-white/90 font-status-code mt-1 leading-tight" style="text-transform:none"></div>
+                                    </div>
+                                    
+                                    <script>
+                                        document.addEventListener('DOMContentLoaded', () => {
+                                            const tooltip = document.getElementById('tech-tooltip');
+                                            document.body.appendChild(tooltip); // Move to body to avoid CSS transform relative positioning issues
+                                            const titleEl = document.getElementById('tt-title');
+                                            const descEl = document.getElementById('tt-desc');
+                                            let lastTouchTime = 0;
+                                            
+                                            const showTooltip = (item) => {
+                                                titleEl.textContent = item.getAttribute('data-tech');
+                                                descEl.textContent = item.getAttribute('data-desc');
+                                                
+                                                const rect = item.getBoundingClientRect();
+                                                tooltip.style.left = rect.left + rect.width / 2 + 'px';
+                                                tooltip.style.top = (rect.top - 10) + 'px';
+                                                tooltip.style.opacity = '1';
+                                            };
+                                            
+                                            const hideTooltip = () => {
+                                                tooltip.style.opacity = '0';
+                                            };
+
+                                            document.querySelectorAll('.tech-hover').forEach(item => {
+                                                item.removeAttribute('title');
+                                                
+                                                // Desktop hover
+                                                item.addEventListener('mouseenter', () => {
+                                                    if (Date.now() - lastTouchTime < 500) return;
+                                                    showTooltip(item);
+                                                });
+                                                item.addEventListener('mouseleave', () => {
+                                                    if (Date.now() - lastTouchTime < 500) return;
+                                                    hideTooltip();
+                                                });
+                                                
+                                                // Mobile tap
+                                                item.addEventListener('touchstart', (e) => {
+                                                    lastTouchTime = Date.now();
+                                                    e.stopPropagation();
+                                                    
+                                                    if (tooltip.style.opacity === '1' && titleEl.textContent === item.getAttribute('data-tech')) {
+                                                        hideTooltip();
+                                                    } else {
+                                                        showTooltip(item);
+                                                    }
+                                                }, { passive: false });
+                                            });
+
+                                            // Hide tooltip when tapping outside
+                                            document.addEventListener('touchstart', hideTooltip);
+                                            // Also keep click for desktop outside clicks just in case
+                                            document.addEventListener('click', (e) => {
+                                                if (Date.now() - lastTouchTime > 500) {
+                                                    hideTooltip();
+                                                }
+                                            });
+                                        });
+                                    </script>
+                                </div>
+                                
+                                <!-- Right: Plain Text Index for Ctrl+F & Readability -->
+                                <div class="hidden xl:flex flex-col gap-4 flex-grow font-status-code border-l border-border-dim/30 pl-6 h-full justify-center">
+                                    <div class="text-[10px] text-border-dim mb-2">[SYS_INDEX_MODE]</div>
+                                    <ul class="flex flex-col gap-3 text-[12px] text-white">
+                                        <li><span class="text-eva-cyan block text-[10px] mb-1">LANGUAGES</span> Python // Java // SQL // PowerShell // Bash</li>
+                                        <li><span class="text-eva-cyan block text-[10px] mb-1">SYSTEMS</span> Linux (Debian/Ubuntu) // Windows // Docker // Raspberry Pi</li>
+                                        <li><span class="text-eva-cyan block text-[10px] mb-1">NETWORKING</span> DNS // DHCP // TCP/IP // Pi-hole</li>
+                                        <li><span class="text-eva-cyan block text-[10px] mb-1">SECURITY TOOLS</span> Wireshark // Suricata // Chronicle // Wazuh</li>
+                                        <li><span class="text-eva-cyan block text-[10px] mb-1">OTHER</span> Git // Technical Documentation // English & Bangla</li>
+                                    </ul>
+                                </div>
+                                
+                            </div>
+
+                            <div class="block xl:hidden mt-6 pt-4 border-t border-border-dim/30">
+                                <div class="text-[10px] text-secondary-container mb-2 font-status-code uppercase tracking-widest">INDEXED // CORE TECH</div>
+                                <div class="flex flex-wrap gap-2 text-[11px] font-status-code uppercase text-white">
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">Python</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">Java</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">SQL</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">PowerShell</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">Bash</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">Linux</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">Windows</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">Docker</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">Raspberry Pi</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">Networking</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">Wireshark</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">Suricata</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">Chronicle</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">Wazuh</span>
+                                <span class="bg-border-dim/20 px-2 py-1 border border-border-dim/50">Git</span>
+                            </div>
+                            </div>
+                        </div>
+                        <!-- Bottom: Neural Activity Log -->
+                        <div class="flex flex-col border-t border-border-dim/30 pt-6 mt-2">
+                        <div class="text-[10px] text-secondary-container mb-4 font-status-code">[NEURAL_ACTIVITY_LOG]
+                        </div>
+                        <!-- Psychographic Display -->
+                        <div
+                            class="relative w-full h-[60px] bg-black border border-border-dim/30 overflow-hidden mb-4 flex items-center">
+                            <div
+                                class="absolute left-2 text-[8px] text-eva-cyan font-status-code rotate-90 origin-left">
+                                SYNC-WAVE</div>
+                            <svg class="w-full h-full absolute top-0 left-0" viewBox="0 0 400 60"
+                                preserveAspectRatio="none">
+                                <!-- Grid lines -->
+                                <line x1="0" y1="15" x2="400" y2="15" stroke="#ec7420" stroke-width="0.5"
+                                    stroke-dasharray="2 2" opacity="0.3"></line>
+                                <line x1="0" y1="30" x2="400" y2="30" stroke="#ec7420" stroke-width="0.5"
+                                    stroke-dasharray="2 2" opacity="0.3"></line>
+                                <line x1="0" y1="45" x2="400" y2="45" stroke="#ec7420" stroke-width="0.5"
+                                    stroke-dasharray="2 2" opacity="0.3"></line>
+
+                                <!-- Waveforms -->
+                                <path class="waveform-path"
+                                    d="M0,30 Q25,5 50,30 T100,30 T150,30 T200,30 T250,30 T300,30 T350,30 T400,30 M400,30 Q425,5 450,30 T500,30 T550,30 T600,30 T650,30 T700,30 T750,30 T800,30">
+                                </path>
+                                <path class="waveform-path waveform-path-2"
+                                    d="M0,30 Q25,55 50,30 T100,30 T150,30 T200,30 T250,30 T300,30 T350,30 T400,30 M400,30 Q425,55 450,30 T500,30 T550,30 T600,30 T650,30 T700,30 T750,30 T800,30">
+                                </path>
+                                <path class="waveform-path waveform-path-3"
+                                    d="M0,30 Q20,10 40,30 T80,30 T120,30 T160,30 T200,30 T240,30 T280,30 T320,30 T360,30 T400,30 M400,30 Q420,10 440,30 T480,30 T520,30 T560,30 T600,30 T640,30 T680,30 T720,30 T760,30 T800,30">
+                                </path>
+                            </svg>
+                        </div>
+                        <!-- GitHub Heatmap (Dynamic) -->
+                        <div class="text-[8px] text-muted-gray mb-1 font-status-code uppercase tracking-widest text-right">REPOSITORY_SYNC_RATE</div>
+                        <div id="github-heatmap-container" class="w-full overflow-hidden flex justify-end items-end mb-4 border-b border-border-dim/30 pb-2 relative">
+                            <div id="github-heatmap" class="flex gap-[3px] h-full items-end">
+                                <div class="text-xs text-eva-cyan animate-pulse font-status-code">FETCHING COMMIT DATA...</div>
+                            </div>
+                        </div>
+                        <div class="grid grid-cols-2 gap-2 text-[10px] font-status-code mt-4">
+                            <div class="border border-border-dim/30 p-2">
+                                <div class="text-muted-gray">INTERNSHIPS</div>
+                                <div class="text-white text-[14px]">02</div>
+                            </div>
+                            <div class="border border-border-dim/30 p-2">
+                                <div class="text-muted-gray">HACKATHONS</div>
+                                <div class="text-white text-[14px]">02</div>
+                            </div>
+                            <div class="border border-border-dim/30 p-2">
+                                <div class="text-muted-gray">DEPLOYED APPS</div>
+                                <div class="text-white text-[14px]">04</div>
+                            </div>
+                            <div class="border border-border-dim/30 p-2">
+                                <div class="text-muted-gray">COMMITS YTD</div>
+                                <div class="text-white text-[14px] text-eva-cyan" id="commits-ytd-readout">[CALCULATING...]</div>
+                            </div>
+                        </div>
+                        
+                        <!-- Achievements & Certifications -->
+                        <div class="flex flex-col border-t border-border-dim/30 pt-6 mt-6">
+                            <div class="text-[10px] text-secondary-container mb-4 font-status-code">[ACHIEVEMENTS_&_CERTIFICATIONS]</div>
+                            <div class="flex flex-col gap-3 font-status-code text-[11px]">
+                                <div class="flex items-start gap-2 group">
+                                    <span class="text-primary-container mt-[2px] group-hover:animate-pulse">▶</span>
+                                    <div>
+                                        <div class="text-white group-hover:text-primary-container transition-colors">GOOGLE CYBERSECURITY PROFESSIONAL CERTIFICATE</div>
+                                        <div class="text-muted-gray text-[9px]">2026</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-2 group">
+                                    <span class="text-primary-container mt-[2px] group-hover:animate-pulse">▶</span>
+                                    <div>
+                                        <div class="text-white group-hover:text-primary-container transition-colors">COMPTIA SECURITY+ (SY0-701) CERT PREP</div>
+                                        <div class="text-muted-gray text-[9px]">INFOSEC // 2026</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-2 group">
+                                    <span class="text-primary-container mt-[2px] group-hover:animate-pulse">▶</span>
+                                    <div>
+                                        <div class="text-white group-hover:text-primary-container transition-colors">CYBERSECURITY FOUNDATIONS</div>
+                                        <div class="text-muted-gray text-[9px]">LINKEDIN LEARNING // 2026</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-2 group">
+                                    <span class="text-primary-container mt-[2px] group-hover:animate-pulse">▶</span>
+                                    <div>
+                                        <div class="text-white group-hover:text-primary-container transition-colors">BUILDING A HOME IT LAB</div>
+                                        <div class="text-muted-gray text-[9px]">LINKEDIN LEARNING // 2026</div>
+                                    </div>
+                                </div>
+                                <div class="flex items-start gap-2 group">
+                                    <span class="text-primary-container mt-[2px] group-hover:animate-pulse">▶</span>
+                                    <div>
+                                        <div class="text-white group-hover:text-primary-container transition-colors">FRESHMAN REPRESENTATIVE</div>
+                                        <div class="text-muted-gray text-[9px]">UMN INTERNATIONAL CLUB // 2025–26</div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+    </main>
+
+    <footer
+        class="w-full py-4 px-4 md:px-gutter flex flex-col items-center gap-2 border-t-2 border-hazard-red bg-black relative z-10">
+        <div class="flex gap-4">
+            <a class="text-[10px] font-status-code text-muted-gray hover:text-primary transition-colors uppercase"
+                href="#">[TERMINAL]</a>
+            <a class="text-[10px] font-status-code text-muted-gray hover:text-primary transition-colors uppercase"
+                href="#">[LOGS]</a>
+            <a class="text-[10px] font-status-code text-muted-gray hover:text-primary transition-colors uppercase"
+                href="#">[S-DAT]</a>
+        </div>
+        <div class="text-[10px] font-status-code text-hazard-red uppercase mt-2 text-center max-w-full">
+            NERV HQ — 2026 — EVAN RAHMAN — ALL SYSTEMS NOMINAL
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>MAGI SYSTEM TERMINAL - PROJECTS (BALTHASAR)</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#ec7420",
+                        "hazard-red": "#a80808",
+                        "surface": "#131313",
+                        "secondary-container": "#f3af00",
+                        "nominal-green": "#50ff10",
+                        "border-dim": "#f06800",
+                        "muted-gray": "#484848",
+                        "text-body": "#b0b0b0",
+                        "primary": "#ffb68e",
+                        "tertiary": "#4de091",
+                        "surface-container-low": "#1b1b1b", "eva-purple": "#9b2cdd", "eva-magenta": "#d22d8d", "eva-crimson": "#cc0000", "eva-cyan": "#00f0ff", "eva-yellow": "#ffe600", "eva-neon": "#00ff66"
+                    },
+                    "fontFamily": {
+                        "body-base": ["IBM Plex Mono"],
+                        "headline-md": ["IBM Plex Mono"],
+                        "status-code": ["IBM Plex Mono"],
+                        "body-sm": ["IBM Plex Mono"],
+                        "headline-lg-mobile": ["IBM Plex Mono"],
+                        "label-caps": ["IBM Plex Mono"],
+                        "headline-lg": ["IBM Plex Mono"]
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "section-gap": "80px",
+                        "panel-padding": "16px",
+                        "margin-mobile": "16px",
+                        "unit": "8px",
+                        "margin-desktop": "24px"
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body
+    class="page-transition-enter text-white font-body-base antialiased min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-black relative">
+    <!-- Watermarks -->
+    <div class="kanji-watermark kanji-watermark-pulse" style="top: 15%; left: 5%;">非常事態</div>
+    <div class="kanji-watermark kanji-watermark-pulse"
+        style="top: 40%; right: 5%; transform: rotate(10deg); animation-delay: 1.5s;">暴走</div>
+    <div class="kanji-watermark kanji-watermark-pulse"
+        style="top: 65%; left: 10%; transform: rotate(-5deg); animation-delay: 3s;">覚醒</div>
+    <div class="kanji-watermark kanji-watermark-pulse"
+        style="top: 85%; right: 15%; transform: rotate(15deg); animation-delay: 4.5s;">使徒</div>
+
+    <!-- TopNavBar -->
+    <nav aria-label="Global Navigation"
+        class="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-gutter h-16 bg-black/90 border-b border-border-dim">
+        <div class="flex items-center gap-2 md:gap-6 relative w-full h-full">
+            <div class="absolute top-1 left-1 text-[8px] text-border-dim font-status-code">SYS-01</div>
+            <div class="absolute bottom-1 left-1 text-[8px] text-border-dim font-status-code">ACT:NOMINAL</div>
+            <a href="index.html"
+                class="font-headline-md text-[16px] md:text-[20px] text-primary-container tracking-widest pl-2 md:pl-4 hover:text-white transition-colors shrink-0">MAGI
+                SYSTEM</a>
+            <div class="hidden md:flex flex-col">
+                <div class="flex gap-4">
+                    <a class="font-status-code text-[14px] font-bold text-primary hover:text-tertiary transition-colors uppercase border border-transparent hover:border-tertiary px-2 py-1"
+                        href="about.html">[01] ABOUT</a>
+                    <a class="font-status-code text-[14px] font-bold text-tertiary border-b border-tertiary transition-colors uppercase px-2 py-1"
+                        href="projects.html">[02] PROJECTS</a>
+                    <a class="font-status-code text-[14px] font-bold text-primary hover:text-tertiary transition-colors uppercase border border-transparent hover:border-tertiary px-2 py-1"
+                        href="contact.html">[03] CONTACT</a>
+                </div>
+                <div
+                    class="flex justify-between px-2 text-[9px] text-muted-gray font-status-code mt-[2px] tracking-widest">
+                    <a href="about.html" class="hover:text-primary transition-colors uppercase">MELCHIOR</a>
+                    <a href="projects.html"
+                        class="text-tertiary hover:text-white transition-colors uppercase">BALTHASAR</a>
+                    <a href="contact.html" class="hover:text-primary transition-colors uppercase">CASPER</a>
+                </div>
+            </div>
+            <div class="ml-auto pr-2 md:pr-4 flex items-center gap-2 md:gap-4">
+                <div class="text-[10px] text-right text-muted-gray hidden sm:block">
+                    <div class="">SERVER: HYD-01</div>
+                </div>
+                <div
+                    class="font-status-code text-[11px] text-nominal-green font-bold animate-pulse border border-nominal-green px-2 py-1 bg-nominal-green/10 hidden sm:block">
+                    ● ONLINE
+                </div>
+                <button id="mobile-menu-btn"
+                    class="animate-pulse md:hidden font-status-code text-[11px] text-primary-container hover:text-white transition-colors uppercase border border-primary-container px-2 py-1">
+                    SYS_MENU
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay"
+        class="fixed inset-0 bg-black/95 z-[100] flex flex-col justify-center items-center gap-8 translate-x-full transition-transform duration-300">
+        <div class="absolute top-0 left-0 w-full h-2 hazard-stripe"></div>
+        <button id="mobile-menu-close"
+            class="absolute top-4 right-4 text-primary-container hover:text-white border border-primary-container px-4 py-2 font-status-code text-[14px]">CLOSE
+            ×</button>
+        <div class="text-hazard-red text-[40px] font-bold tracking-widest font-headline-md mb-8">SYS_MENU</div>
+        <div class="flex flex-col items-center gap-1">
+            <a class="font-status-code text-[24px] font-bold text-primary hover:text-tertiary transition-colors uppercase"
+                href="about.html">[01] ABOUT</a>
+            <span class="text-[10px] text-border-dim font-status-code uppercase tracking-widest">MELCHIOR</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+            <a class="font-status-code text-[24px] font-bold text-primary hover:text-tertiary transition-colors uppercase"
+                href="projects.html">[02] PROJECTS</a>
+            <span class="text-[10px] text-border-dim font-status-code uppercase tracking-widest">BALTHASAR</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+            <a class="font-status-code text-[24px] font-bold text-primary hover:text-tertiary transition-colors uppercase"
+                href="contact.html">[03] CONTACT</a>
+            <span class="text-[10px] text-border-dim font-status-code uppercase tracking-widest">CASPER</span>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-2 hazard-stripe"></div>
+    </div>
+
+    <main class="relative pt-24 min-h-[calc(100vh-60px)]">
+        <!-- STATUS BAR -->
+        <div class="status-bar-container w-full mb-8">
+            <div class="px-4 border-r border-border-dim shrink-0 z-20 bg-black h-full flex items-center">NODE 02/03
+            </div>
+
+            <!-- Progress Bar Section -->
+            <div class="flex-grow relative h-full flex bg-black overflow-hidden z-10 border-r border-border-dim">
+                <div class="absolute top-0 left-0 h-full magi-chevron-track" style="width: 66.66%;"></div>
+                <!-- The actual progress fill -->
+                <div class="absolute top-0 left-0 h-full magi-chevron-fill" style="width: 66.66%;"></div>
+
+                <!-- Node markers -->
+                <div class="absolute top-0 left-0 w-full h-full flex pointer-events-none">
+                    <div class="flex-1 border-r border-border-dim/30"></div>
+                    <div class="flex-1 border-r border-border-dim/30"></div>
+                    <div class="flex-1"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 3. BALTHASAR · 2 (PROJECTS) -->
+        <section class="px-margin-mobile md:px-gutter max-w-[1440px] mx-auto pb-section-gap fade-in-up visible"
+            id="projects">
+            <div class="mb-4 text-[10px] text-border-dim font-status-code">[2]-DATA·ARCHIVE</div>
+            <div
+                class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 auto-rows-[minmax(180px,auto)] grid-flow-dense gap-6 card-grid transition-all duration-500">
+                <!-- Project Card 1: Raspberry Pi Network Infrastructure -->
+                <div class="magi-panel bento-panel theme-eva-01 flex flex-col group cursor-pointer lg:col-span-1 transition-all duration-500 hover:shadow-[0_0_25px_rgba(236,116,32,0.4)]">
+                    <div class="flex justify-between items-center border-b border-border-dim/50 p-2 bg-border-dim/10 shrink-0">
+                        <span class="text-[10px] font-status-code text-white">[PRJ-001]</span>
+                        <span class="text-[10px] font-status-code text-hazard-red flex items-center gap-1">THREAT <span class="text-[8px]">■■■</span></span>
+                    </div>
+                    <div class="flex flex-col lg:flex-row h-full overflow-hidden flex-1 relative">
+                        <div class="p-4 flex flex-col flex-1 relative main-content transition-all duration-500 z-10">
+                            <div class="absolute -right-10 -bottom-10 opacity-10 transition-opacity">
+                                <svg width="200" height="200" viewBox="0 0 100 100" class="magi-hex animate-pulse">
+                                    <polygon points="50 0 100 25 100 75 50 100 0 75 0 25" fill="none" stroke="#ec7420" stroke-width="1" />
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-[18px] text-primary-container uppercase z-10 tracking-wide mb-2">Raspberry Pi Network Infrastructure</h3>
+                            <p class="text-[13px] text-text-body mb-4 z-10 leading-relaxed">DNS-level security control on a Raspberry Pi that blocks unwanted telemetry and ad traffic across my home network.</p>
+                            <div class="hidden [.is-expanded_&]:flex my-auto border-y border-border-dim/30 py-4 flex-col justify-center items-center w-full z-10 relative overflow-hidden">
+                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(236,116,32,0.2)_0%,transparent_70%)]"></div>
+                                <svg width="100%" height="120" viewBox="0 0 400 100" class="text-primary-container">
+                                    <style>@keyframes dataflow { to { stroke-dashoffset: -16; } }</style>
+                                    <g fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4" style="animation: dataflow 1s linear infinite;">
+                                        <path d="M 70 25 L 160 50" /><path d="M 70 50 L 160 50" /><path d="M 70 75 L 160 50" />
+                                        <path d="M 220 50 L 300 30" />
+                                    </g>
+                                    <path d="M 220 50 L 300 72" fill="none" stroke="#cc0000" stroke-width="2" />
+                                    <g fill="rgba(0,0,0,0.5)" stroke="currentColor" stroke-width="2">
+                                        <rect x="20" y="15" width="50" height="20" /><rect x="20" y="40" width="50" height="20" /><rect x="20" y="65" width="50" height="20" />
+                                        <rect x="160" y="30" width="60" height="40" />
+                                        <rect x="300" y="18" width="80" height="24" />
+                                    </g>
+                                    <rect x="300" y="60" width="80" height="24" fill="#cc0000" />
+                                    <g font-family="monospace" text-anchor="middle" font-weight="bold" font-size="8">
+                                        <text x="45" y="28" fill="currentColor">PC</text><text x="45" y="53" fill="currentColor">PHONE</text><text x="45" y="78" fill="currentColor">TV</text>
+                                        <text x="190" y="48" fill="currentColor">PI-HOLE</text><text x="190" y="60" fill="#fff" font-size="6">DNS FILTER</text>
+                                        <text x="340" y="33" fill="currentColor">ALLOWED</text>
+                                        <text x="340" y="75" fill="#000">BLOCKED ~40%</text>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="bg-black/50 border border-border-dim/30 p-3 font-status-code text-[11px] mb-4 z-10 mt-auto [.is-expanded_&]:mt-0">
+                                <div class="text-primary-container mb-2 font-bold tracking-widest">> SYS_METRICS</div>
+                                <div class="flex flex-col gap-1">
+                                    <div class="text-text-body flex justify-between"><span class="w-20 shrink-0">BLOCKED:</span> <span class="text-white text-right">~40%</span></div>
+                                    <div class="text-text-body flex justify-between"><span class="w-20 shrink-0">STACK:</span> <span class="text-white text-right">PI-HOLE</span></div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 z-10">
+                                <span class="tech-tag">PI-HOLE</span>
+                                <span class="tech-tag">DNS</span>
+                                <span class="tech-tag">DHCP</span>
+                                <span class="tech-tag">TCP/IP</span>
+                            </div>
+                        </div>
+                        <div class="expanded-content hidden flex-1 border-t lg:border-t-0 lg:border-l border-border-dim/50 p-6 bg-black/40 flex-col opacity-0 transition-opacity duration-500 z-10">
+                            <h4 class="text-primary-container font-bold mb-4 font-status-code text-[14px] uppercase">> DEEP_DIVE_LOG</h4>
+                            <p class="text-[13px] text-text-body leading-relaxed mb-3">Built a DNS-level security control with Pi-hole that identified and blocked unauthorized outbound telemetry and advertising traffic, blocking roughly 40% of flagged requests.</p>
+                            <p class="text-[13px] text-text-body leading-relaxed mb-3">Applied core networking concepts (DNS, DHCP, TCP/IP) and set a static IP assignment policy to reduce exposure.</p>
+                            <p class="text-[13px] text-text-body leading-relaxed mb-3">Documented the configuration and tracked results over time with a real-time monitoring dashboard.</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 2: Linux Home Server & Game Hosting -->
+                <div class="magi-panel bento-panel theme-eva-01 flex flex-col group cursor-pointer lg:col-span-1 transition-all duration-500 hover:shadow-[0_0_25px_rgba(236,116,32,0.4)]">
+                    <div class="flex justify-between items-center border-b border-border-dim/50 p-2 bg-border-dim/10 shrink-0">
+                        <span class="text-[10px] font-status-code text-white">[PRJ-002]</span>
+                        <span class="text-[10px] font-status-code text-hazard-red flex items-center gap-1">THREAT <span class="text-[8px]">■■□</span></span>
+                    </div>
+                    <div class="flex flex-col lg:flex-row h-full overflow-hidden flex-1 relative">
+                        <div class="p-4 flex flex-col flex-1 relative main-content transition-all duration-500 z-10">
+                            <div class="absolute -right-10 -bottom-10 opacity-10 transition-opacity">
+                                <svg width="200" height="200" viewBox="0 0 100 100" class="magi-hex animate-pulse">
+                                    <polygon points="50 0 100 25 100 75 50 100 0 75 0 25" fill="none" stroke="#ec7420" stroke-width="1" />
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-[18px] text-primary-container uppercase z-10 tracking-wide mb-2">Linux Home Server & Game Hosting</h3>
+                            <p class="text-[13px] text-text-body mb-4 z-10 leading-relaxed">Self-hosted Debian/Ubuntu server running containerized services and game hosting, with hardened admin access.</p>
+                            <div class="hidden [.is-expanded_&]:flex my-auto border-y border-border-dim/30 py-4 flex-col justify-center items-center w-full z-10 relative overflow-hidden">
+                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(236,116,32,0.2)_0%,transparent_70%)]"></div>
+                                <svg width="100%" height="120" viewBox="0 0 400 100" class="text-primary-container">
+                                    <style>@keyframes dataflow { to { stroke-dashoffset: -16; } }</style>
+                                    <g fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4" style="animation: dataflow 1s linear infinite;">
+                                        <path d="M 60 50 L 110 50" /><path d="M 170 50 L 220 50" /><path d="M 300 30 L 330 30" /><path d="M 300 70 L 330 70" />
+                                    </g>
+                                    <g fill="rgba(0,0,0,0.5)" stroke="currentColor" stroke-width="2">
+                                        <circle cx="35" cy="50" r="22" />
+                                        <rect x="110" y="32" width="60" height="36" />
+                                        <rect x="220" y="15" width="80" height="30" /><rect x="220" y="55" width="80" height="30" />
+                                        <rect x="330" y="18" width="55" height="24" /><rect x="330" y="58" width="55" height="24" stroke-dasharray="4 4" />
+                                    </g>
+                                    <g font-family="monospace" text-anchor="middle" font-weight="bold" font-size="8">
+                                        <text x="35" y="48" fill="currentColor">ADMIN</text><text x="35" y="58" fill="#fff" font-size="6">2FA</text>
+                                        <text x="140" y="48" fill="currentColor">HTTPS</text><text x="140" y="58" fill="#fff" font-size="6">SSL</text>
+                                        <text x="260" y="33" fill="currentColor">DOCKER</text><text x="260" y="73" fill="currentColor">GAME SRV</text>
+                                        <text x="357" y="33" fill="currentColor">CRON</text><text x="357" y="73" fill="currentColor">BACKUP</text>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="bg-black/50 border border-border-dim/30 p-3 font-status-code text-[11px] mb-4 z-10 mt-auto [.is-expanded_&]:mt-0">
+                                <div class="text-primary-container mb-2 font-bold tracking-widest">> SYS_METRICS</div>
+                                <div class="flex flex-col gap-1">
+                                    <div class="text-text-body flex justify-between"><span class="w-20 shrink-0">ROLE:</span> <span class="text-white text-right">LEAD ADMIN</span></div>
+                                    <div class="text-text-body flex justify-between"><span class="w-20 shrink-0">AUTH:</span> <span class="text-white text-right">2FA + SSL</span></div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 z-10">
+                                <span class="tech-tag">DEBIAN</span>
+                                <span class="tech-tag">UBUNTU</span>
+                                <span class="tech-tag">DOCKER</span>
+                                <span class="tech-tag">BASH</span>
+                            </div>
+                        </div>
+                        <div class="expanded-content hidden flex-1 border-t lg:border-t-0 lg:border-l border-border-dim/50 p-6 bg-black/40 flex-col opacity-0 transition-opacity duration-500 z-10">
+                            <h4 class="text-primary-container font-bold mb-4 font-status-code text-[14px] uppercase">> DEEP_DIVE_LOG</h4>
+                            <p class="text-[13px] text-text-body leading-relaxed mb-3">Lead administrator for a Linux home server running Docker containers and multiplayer game hosting.</p>
+                            <p class="text-[13px] text-text-body leading-relaxed mb-3">Implemented security controls, including HTTPS/SSL encryption and two-factor authentication for administrative access.</p>
+                            <p class="text-[13px] text-text-body leading-relaxed mb-3">Automated backups and routine maintenance with shell scripts and task schedulers.</p>
+
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project Card 3: Security Operations Labs -->
+                <div class="magi-panel bento-panel theme-eva-01 flex flex-col group cursor-pointer lg:col-span-1 transition-all duration-500 hover:shadow-[0_0_25px_rgba(236,116,32,0.4)]">
+                    <div class="flex justify-between items-center border-b border-border-dim/50 p-2 bg-border-dim/10 shrink-0">
+                        <span class="text-[10px] font-status-code text-white">[PRJ-003]</span>
+                        <span class="text-[10px] font-status-code text-hazard-red flex items-center gap-1">THREAT <span class="text-[8px]">■□□</span></span>
+                    </div>
+                    <div class="flex flex-col lg:flex-row h-full overflow-hidden flex-1 relative">
+                        <div class="p-4 flex flex-col flex-1 relative main-content transition-all duration-500 z-10">
+                            <div class="absolute -right-10 -bottom-10 opacity-10 transition-opacity">
+                                <svg width="200" height="200" viewBox="0 0 100 100" class="magi-hex animate-pulse">
+                                    <polygon points="50 0 100 25 100 75 50 100 0 75 0 25" fill="none" stroke="#ec7420" stroke-width="1" />
+                                </svg>
+                            </div>
+                            <h3 class="font-bold text-[18px] text-primary-container uppercase z-10 tracking-wide mb-2">Security Operations Labs</h3>
+                            <p class="text-[13px] text-text-body mb-4 z-10 leading-relaxed">Hands-on labs from the Google Cybersecurity Professional Certificate: log analysis, threat detection, and traffic inspection.</p>
+                            <div class="hidden [.is-expanded_&]:flex my-auto border-y border-border-dim/30 py-4 flex-col justify-center items-center w-full z-10 relative overflow-hidden">
+                                <div class="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_center,rgba(236,116,32,0.2)_0%,transparent_70%)]"></div>
+                                <svg width="100%" height="120" viewBox="0 0 400 100" class="text-primary-container">
+                                    <style>@keyframes dataflow { to { stroke-dashoffset: -16; } }</style>
+                                    <g fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="4 4" style="animation: dataflow 1s linear infinite;">
+                                        <path d="M 80 25 L 160 50" /><path d="M 80 75 L 160 50" /><path d="M 240 50 L 300 50" />
+                                    </g>
+                                    <g fill="rgba(0,0,0,0.5)" stroke="currentColor" stroke-width="2">
+                                        <rect x="15" y="12" width="65" height="26" /><rect x="15" y="62" width="65" height="26" />
+                                        <rect x="160" y="30" width="80" height="40" />
+                                    </g>
+                                    <rect x="300" y="35" width="85" height="30" fill="currentColor" />
+                                    <g font-family="monospace" text-anchor="middle" font-weight="bold" font-size="8">
+                                        <text x="47" y="28" fill="currentColor">PCAP</text><text x="47" y="78" fill="currentColor">LOGS</text>
+                                        <text x="200" y="48" fill="currentColor">IDS / SIEM</text><text x="200" y="60" fill="#fff" font-size="6">SURICATA · CHRONICLE</text>
+                                        <text x="342" y="53" fill="#000">INCIDENT RPT</text>
+                                    </g>
+                                </svg>
+                            </div>
+                            <div class="bg-black/50 border border-border-dim/30 p-3 font-status-code text-[11px] mb-4 z-10 mt-auto [.is-expanded_&]:mt-0">
+                                <div class="text-primary-container mb-2 font-bold tracking-widest">> SYS_METRICS</div>
+                                <div class="flex flex-col gap-1">
+                                    <div class="text-text-body flex justify-between"><span class="w-20 shrink-0">TOOLS:</span> <span class="text-white text-right">4+</span></div>
+                                    <div class="text-text-body flex justify-between"><span class="w-20 shrink-0">CERT:</span> <span class="text-white text-right">GOOGLE 2026</span></div>
+                                </div>
+                            </div>
+                            <div class="flex flex-wrap gap-2 z-10">
+                                <span class="tech-tag">WIRESHARK</span>
+                                <span class="tech-tag">SURICATA</span>
+                                <span class="tech-tag">CHRONICLE</span>
+                                <span class="tech-tag">SQL</span>
+                            </div>
+                        </div>
+                        <div class="expanded-content hidden flex-1 border-t lg:border-t-0 lg:border-l border-border-dim/50 p-6 bg-black/40 flex-col opacity-0 transition-opacity duration-500 z-10">
+                            <h4 class="text-primary-container font-bold mb-4 font-status-code text-[14px] uppercase">> DEEP_DIVE_LOG</h4>
+                            <p class="text-[13px] text-text-body leading-relaxed mb-3">Captured and inspected network traffic in Wireshark to spot suspicious patterns.</p>
+                            <p class="text-[13px] text-text-body leading-relaxed mb-3">Wrote and tuned Suricata rules, then reviewed the resulting alerts.</p>
+                            <p class="text-[13px] text-text-body leading-relaxed mb-3">Searched logs in Chronicle and queried data with SQL to investigate events and write incident reports.</p>
+
+                        </div>
+                    </div>
+                </div>
+        </section>
+    </main>
+
+    <footer
+        class="w-full py-4 px-4 md:px-gutter flex flex-col items-center gap-2 border-t-2 border-hazard-red bg-black relative z-10">
+        <div class="flex gap-4">
+            <a class="text-[10px] font-status-code text-muted-gray hover:text-primary transition-colors uppercase"
+                href="#">[TERMINAL]</a>
+            <a class="text-[10px] font-status-code text-muted-gray hover:text-primary transition-colors uppercase"
+                href="#">[LOGS]</a>
+            <a class="text-[10px] font-status-code text-muted-gray hover:text-primary transition-colors uppercase"
+                href="#">[S-DAT]</a>
+        </div>
+        <div class="text-[10px] font-status-code text-hazard-red uppercase mt-2 text-center max-w-full">
+            NERV HQ — 2026 — EVAN RAHMAN — ALL SYSTEMS NOMINAL
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>
+<a class="text-[10px] font-status-code text-muted-gray hover:text-primary transition-colors uppercase"
+    href="#">[LOGS]</a>
+<a class="text-[10px] font-status-code text-muted-gray hover:text-primary transition-colors uppercase"
+    href="#">[S-DAT]</a>
+</div>
+<div class="text-[10px] font-status-code text-hazard-red uppercase mt-2 text-center max-w-full">
+    NERV HQ — 2026 — EVAN RAHMAN — ALL SYSTEMS NOMINAL
+</div>
+</footer>
+<script src="main.js"></script>
+</body>
+
+</html>

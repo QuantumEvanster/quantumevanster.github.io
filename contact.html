@@ -1,0 +1,406 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta content="width=device-width, initial-scale=1.0" name="viewport">
+    <title>MAGI SYSTEM TERMINAL - CONTACT (CASPER)</title>
+    <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+        rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;700&display=swap" rel="stylesheet">
+    <script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary-container": "#ec7420",
+                        "hazard-red": "#a80808",
+                        "surface": "#131313",
+                        "secondary-container": "#f3af00",
+                        "nominal-green": "#50ff10",
+                        "border-dim": "#f06800",
+                        "muted-gray": "#484848",
+                        "text-body": "#b0b0b0",
+                        "primary": "#ffb68e",
+                        "tertiary": "#4de091",
+                        "surface-container-low": "#1b1b1b", "eva-purple": "#9b2cdd", "eva-magenta": "#d22d8d", "eva-crimson": "#cc0000", "eva-cyan": "#00f0ff", "eva-yellow": "#ffe600", "eva-neon": "#00ff66"
+                    },
+                    "fontFamily": {
+                        "body-base": ["IBM Plex Mono"],
+                        "headline-md": ["IBM Plex Mono"],
+                        "status-code": ["IBM Plex Mono"],
+                        "body-sm": ["IBM Plex Mono"],
+                        "headline-lg-mobile": ["IBM Plex Mono"],
+                        "label-caps": ["IBM Plex Mono"],
+                        "headline-lg": ["IBM Plex Mono"]
+                    },
+                    "spacing": {
+                        "gutter": "24px",
+                        "section-gap": "80px",
+                        "panel-padding": "16px",
+                        "margin-mobile": "16px",
+                        "unit": "8px",
+                        "margin-desktop": "24px"
+                    }
+                }
+            }
+        }
+    </script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body
+    class="page-transition-enter text-white font-body-base antialiased min-h-screen overflow-x-hidden selection:bg-primary-container selection:text-black relative">
+
+    <!-- Emergency Overlay -->
+    <div id="emergency-overlay">
+        <div id="emergency-flash" class="emergency-text">非常事態<br>EMERGENCY</div>
+
+        <div id="wa-confirm-box"
+            class="hidden flex-col items-center justify-center bg-black border-4 border-[#cc0000] p-8 max-w-2xl mx-4 text-center relative shadow-[0_0_50px_#cc0000]">
+            <div class="absolute top-0 left-0 w-full h-2 hazard-stripe-red"></div>
+            <div
+                class="text-[#cc0000] text-[40px] md:text-[60px] font-bold tracking-widest font-headline-md mb-2 leading-none">
+                非常事態</div>
+            <div class="text-[#ffe600] text-[24px] md:text-[40px] font-bold tracking-widest font-headline-md mb-8">
+                EMERGENCY</div>
+
+            <p
+                class="text-white text-[14px] md:text-[18px] font-body-base mb-8 border border-[#cc0000]/50 p-4 bg-[#cc0000]/10">
+                INITIATE EXTERNAL COMMS TO WHATSAPP?<br>
+                <span class="text-muted-gray text-[12px] mt-2 block">TARGET: +91 8712903315</span>
+            </p>
+
+            <div class="flex gap-4 w-full justify-center">
+                <button id="wa-btn-abort"
+                    class="magi-button border-[#cc0000] text-[#cc0000] hover:bg-[#cc0000] hover:text-black px-6 py-3 font-bold text-[16px] tracking-widest flex-1 max-w-[200px] whitespace-nowrap">
+                    [ ABORT ]
+                </button>
+                <button id="wa-btn-execute"
+                    class="magi-button border-[#ffe600] text-[#ffe600] hover:bg-[#ffe600] hover:text-black px-6 py-3 font-bold text-[16px] tracking-widest flex-1 max-w-[200px] whitespace-nowrap">
+                    [ EXECUTE ]
+                </button>
+            </div>
+            <div class="absolute bottom-0 left-0 w-full h-2 hazard-stripe-red"></div>
+        </div>
+    </div>
+
+    <!-- MAGI Logo Background -->
+    <div class="fixed inset-0 pointer-events-none flex items-center justify-center z-0 overflow-hidden opacity-50 mix-blend-screen" id="magi-bg-logo">
+        <svg viewBox="-600 -600 1200 1200" class="w-[800px] h-[800px] md:w-[1200px] md:h-[1200px] max-w-none animate-pulse-glow">
+            <defs>
+                <!-- Explicit Blade Shapes -->
+            </defs>
+
+            <!-- Outer Green Arcs -->
+            <g class="magi-spin-slow" style="transform-origin: 0px 0px;">
+                <circle cx="0" cy="0" r="340" stroke="#409820" stroke-width="3" fill="none" />
+                <circle cx="0" cy="0" r="360" stroke="#409820" stroke-width="8" stroke-dasharray="150 30" fill="none" />
+                <circle cx="0" cy="0" r="390" stroke="#409820" stroke-width="2" stroke-dasharray="15 15" fill="none" />
+            </g>
+            
+            <g class="magi-spin-reverse" style="transform-origin: 0px 0px;">
+                <circle cx="0" cy="0" r="410" stroke="#409820" stroke-width="15" stroke-dasharray="300 80 100 80" fill="none" />
+                <circle cx="0" cy="0" r="435" stroke="#409820" stroke-width="2" fill="none" />
+                <circle cx="0" cy="0" r="460" stroke="#409820" stroke-width="4" stroke-dasharray="50 50" fill="none" />
+            </g>
+
+            <!-- Center Orange Blades -->
+            <g style="filter: drop-shadow(0 0 10px rgba(236,116,32,0.8));">
+                <!-- Center Triangle -->
+            <g>
+                <path d="M -76,-44 L 76,-44 L 0,88 Z" fill="none" stroke="#ec7420" stroke-width="2.5" />
+                <text x="0" y="-14" text-anchor="middle" font-size="26" fill="#ec7420" font-weight="bold"
+                    font-family="monospace" letter-spacing="2">MAGI</text>
+                <text x="0" y="28" text-anchor="middle" font-size="42" fill="#ec7420" font-weight="bold"
+                    font-family="monospace">01</text>
+                <text x="0" y="44" text-anchor="middle" font-size="8.5" fill="#ec7420" font-family="monospace"
+                    letter-spacing="1">ORIGINAL</text>
+            </g>
+                <!-- Right Blade: BALTHASAR-2 -->
+                <g transform="rotate(0)">
+                    <path d="M 95,-44 L 335,-44 L 259,88 L 19,88 Z" fill="none" stroke="#ec7420" stroke-width="2.5" />
+                    <line x1="120" y1="-44" x2="44" y2="88" stroke="#ec7420" stroke-width="2.5" />
+                    <line x1="101" y1="-11" x2="316" y2="-11" stroke="#ec7420" stroke-width="2.5" />
+                    <line x1="82" y1="22" x2="297" y2="22" stroke="#ec7420" stroke-width="2.5" />
+                    <line x1="63" y1="55" x2="278" y2="55" stroke="#ec7420" stroke-width="2.5" />
+                    
+                    <text x="117" y="-22" text-anchor="start" font-size="14" fill="#ec7420" font-weight="bold" font-family="monospace">CELEBRUM</text>
+                    <text x="98" y="11" text-anchor="start" font-size="14" fill="#ec7420" font-weight="bold" font-family="monospace">CELEBELLUM</text>
+                    <text x="79" y="44" text-anchor="start" font-size="14" fill="#ec7420" font-weight="bold" font-family="monospace">CALLOSUM</text>
+                    <text x="60" y="77" text-anchor="start" font-size="14" fill="#ec7420" font-weight="bold" font-family="monospace">OBLONGATE</text>
+                    
+                    <text transform="translate(69.5, 22) rotate(120)" text-anchor="middle" font-size="13" fill="#ec7420" font-weight="bold" font-family="monospace" letter-spacing="1">BALTHASAR-2</text>
+                </g>
+
+                <!-- Bottom-Left Blade: CASPER-3 -->
+                <g transform="rotate(120)">
+                    <path d="M 95,-44 L 335,-44 L 259,88 L 19,88 Z" fill="none" stroke="#ec7420" stroke-width="2.5" />
+                    <line x1="120" y1="-44" x2="44" y2="88" stroke="#ec7420" stroke-width="2.5" />
+                    <line x1="101" y1="-11" x2="316" y2="-11" stroke="#ec7420" stroke-width="2.5" />
+                    <line x1="82" y1="22" x2="297" y2="22" stroke="#ec7420" stroke-width="2.5" />
+                    <line x1="63" y1="55" x2="278" y2="55" stroke="#ec7420" stroke-width="2.5" />
+                    
+                    <text x="312" y="-22" transform="rotate(180, 312, -27.5)" text-anchor="start" font-size="14" fill="#ec7420" font-weight="bold" font-family="monospace">OBLONGATE</text>
+                    <text x="293" y="11" transform="rotate(180, 293, 5.5)" text-anchor="start" font-size="14" fill="#ec7420" font-weight="bold" font-family="monospace">CALLOSUM</text>
+                    <text x="274" y="44" transform="rotate(180, 274, 38.5)" text-anchor="start" font-size="14" fill="#ec7420" font-weight="bold" font-family="monospace">CELEBELLUM</text>
+                    <text x="255" y="77" transform="rotate(180, 255, 71.5)" text-anchor="start" font-size="14" fill="#ec7420" font-weight="bold" font-family="monospace">CELEBRUM</text>
+                    
+                    <text transform="translate(69.5, 22) rotate(120)" text-anchor="middle" font-size="13" fill="#ec7420" font-weight="bold" font-family="monospace" letter-spacing="1">CASPER-3</text>
+                </g>
+
+                <!-- Top-Left Blade: MELCHIOR-1 -->
+                <g transform="rotate(240)">
+                    <path d="M 95,-44 L 335,-44 L 259,88 L 19,88 Z" fill="none" stroke="#ec7420" stroke-width="2.5" />
+                    <line x1="120" y1="-44" x2="44" y2="88" stroke="#ec7420" stroke-width="2.5" />
+                    <line x1="101" y1="-11" x2="316" y2="-11" stroke="#ec7420" stroke-width="2.5" />
+                    <line x1="82" y1="22" x2="297" y2="22" stroke="#ec7420" stroke-width="2.5" />
+                    <line x1="63" y1="55" x2="278" y2="55" stroke="#ec7420" stroke-width="2.5" />
+                    
+                    <text x="312" y="-22" transform="rotate(180, 312, -27.5)" text-anchor="start" font-size="14" fill="#ec7420" font-weight="bold" font-family="monospace">OBLONGATE</text>
+                    <text x="293" y="11" transform="rotate(180, 293, 5.5)" text-anchor="start" font-size="14" fill="#ec7420" font-weight="bold" font-family="monospace">CALLOSUM</text>
+                    <text x="274" y="44" transform="rotate(180, 274, 38.5)" text-anchor="start" font-size="14" fill="#ec7420" font-weight="bold" font-family="monospace">CELEBELLUM</text>
+                    <text x="255" y="77" transform="rotate(180, 255, 71.5)" text-anchor="start" font-size="14" fill="#ec7420" font-weight="bold" font-family="monospace">CELEBRUM</text>
+                    
+                    <text transform="translate(69.5, 22) rotate(120)" text-anchor="middle" font-size="13" fill="#ec7420" font-weight="bold" font-family="monospace" letter-spacing="1">MELCHIOR-1</text>
+                </g>            </g>
+            </g>
+            
+            <!-- Outer decorative text -->
+            <text x="-480" y="0" transform="rotate(-90, -480, 0)" text-anchor="middle" font-size="24" fill="#409820" font-family="monospace" letter-spacing="8" opacity="0.7">999 999</text>
+        </svg>
+    </div>
+    <!-- TopNavBar -->
+    <nav aria-label="Global Navigation"
+        class="fixed top-0 w-full z-50 flex justify-between items-center px-4 md:px-gutter h-16 bg-black/90 border-b border-border-dim">
+        <div class="flex items-center gap-2 md:gap-6 relative w-full h-full">
+            <div class="absolute top-1 left-1 text-[8px] text-border-dim font-status-code">SYS-01</div>
+            <div class="absolute bottom-1 left-1 text-[8px] text-border-dim font-status-code">ACT:NOMINAL</div>
+            <a href="index.html"
+                class="font-headline-md text-[16px] md:text-[20px] text-primary-container tracking-widest pl-2 md:pl-4 hover:text-white transition-colors shrink-0">MAGI
+                SYSTEM</a>
+            <div class="hidden md:flex flex-col">
+                <div class="flex gap-4">
+                    <a class="font-status-code text-[14px] font-bold text-primary hover:text-tertiary transition-colors uppercase border border-transparent hover:border-tertiary px-2 py-1" href="about.html">[01] ABOUT</a>
+                    <a class="font-status-code text-[14px] font-bold text-primary hover:text-tertiary transition-colors uppercase border border-transparent hover:border-tertiary px-2 py-1" href="projects.html">[02] PROJECTS</a>
+                    <a class="font-status-code text-[14px] font-bold text-tertiary border-b border-tertiary transition-colors uppercase px-2 py-1" href="contact.html">[03] CONTACT</a>
+                </div>
+                <div class="flex justify-between px-2 text-[9px] text-muted-gray font-status-code mt-[2px] tracking-widest">
+                    <a href="about.html" class="hover:text-primary transition-colors uppercase">MELCHIOR</a>
+                    <a href="projects.html" class="hover:text-primary transition-colors uppercase">BALTHASAR</a>
+                    <a href="contact.html" class="text-tertiary hover:text-white transition-colors uppercase">CASPER</a>
+                </div>
+            </div>
+            <div class="ml-auto pr-2 md:pr-4 flex items-center gap-2 md:gap-4">
+                <div class="text-[10px] text-right text-muted-gray hidden sm:block">
+                    <div class="">SERVER: HYD-01</div>
+                </div>
+                <div
+                    class="font-status-code text-[11px] text-nominal-green font-bold animate-pulse border border-nominal-green px-2 py-1 bg-nominal-green/10 hidden sm:block">
+                    ● ONLINE
+                </div>
+                <button id="mobile-menu-btn"
+                    class="animate-pulse md:hidden font-status-code text-[11px] text-primary-container hover:text-white transition-colors uppercase border border-primary-container px-2 py-1">
+                    SYS_MENU
+                </button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Mobile Menu Overlay -->
+    <div id="mobile-menu-overlay"
+        class="fixed inset-0 bg-black/95 z-[100] flex flex-col justify-center items-center gap-8 translate-x-full transition-transform duration-300">
+        <div class="absolute top-0 left-0 w-full h-2 hazard-stripe"></div>
+        <button id="mobile-menu-close"
+            class="absolute top-4 right-4 text-primary-container hover:text-white border border-primary-container px-4 py-2 font-status-code text-[14px]">CLOSE
+            ×</button>
+        <div class="text-hazard-red text-[40px] font-bold tracking-widest font-headline-md mb-8">SYS_MENU</div>
+        <div class="flex flex-col items-center gap-1">
+            <a class="font-status-code text-[24px] font-bold text-primary hover:text-tertiary transition-colors uppercase"
+                href="about.html">[01] ABOUT</a>
+            <span class="text-[10px] text-border-dim font-status-code uppercase tracking-widest">MELCHIOR</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+            <a class="font-status-code text-[24px] font-bold text-primary hover:text-tertiary transition-colors uppercase"
+                href="projects.html">[02] PROJECTS</a>
+            <span class="text-[10px] text-border-dim font-status-code uppercase tracking-widest">BALTHASAR</span>
+        </div>
+        <div class="flex flex-col items-center gap-1">
+            <a class="font-status-code text-[24px] font-bold text-primary hover:text-tertiary transition-colors uppercase"
+                href="contact.html">[03] CONTACT</a>
+            <span class="text-[10px] text-border-dim font-status-code uppercase tracking-widest">CASPER</span>
+        </div>
+        <div class="absolute bottom-0 left-0 w-full h-2 hazard-stripe"></div>
+    </div>
+
+    <main class="relative pt-24 min-h-[calc(100vh-60px)]">
+        <!-- STATUS BAR -->
+        <div class="status-bar-container w-full mb-8">
+            <div class="px-4 border-r border-border-dim shrink-0 z-20 bg-black h-full flex items-center">NODE 03/03
+            </div>
+
+            <!-- Progress Bar Section -->
+            <div class="flex-grow relative h-full flex bg-black overflow-hidden z-10 border-r border-border-dim">
+                <div class="absolute top-0 left-0 w-full h-full magi-chevron-track"></div>
+                <!-- The actual progress fill -->
+                <div class="absolute top-0 left-0 h-full magi-chevron-fill" style="width: 100%;"></div>
+
+                <!-- Node markers -->
+                <div class="absolute top-0 left-0 w-full h-full flex pointer-events-none">
+                    <div class="flex-1 border-r border-border-dim/30"></div>
+                    <div class="flex-1 border-r border-border-dim/30"></div>
+                    <div class="flex-1"></div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 4. CASPER · 3 (CONTACT) -->
+        <section class="px-margin-mobile md:px-gutter max-w-[1440px] mx-auto pb-section-gap fade-in-up visible"
+            id="contact">
+            <div
+                class="text-center mb-16 mt-8 border border-border-dim/50 p-6 bg-black/80 max-w-2xl mx-auto relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full h-1 hazard-stripe"></div>
+                <div class="font-headline-md text-[20px] md:text-[32px] text-primary-container uppercase mb-2">CASPER·3
+                    VOTE: AUTHORIZED × 3</div>
+                <div class="font-status-code text-[14px] text-nominal-green animate-pulse">COMMUNICATION CHANNELS OPEN
+                    FOR INQUIRY</div>
+                <div class="absolute bottom-0 left-0 w-full h-1 hazard-stripe"></div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Contact Vote Tile 1 -->
+                <a class="magi-panel vote-tile min-h-[220px] h-auto flex flex-col items-center justify-between p-6 cursor-pointer relative"
+                    href="mailto:evanrahmanmn@gmail.com">
+                    <div class="text-[10px] text-border-dim font-status-code self-start absolute top-4 left-4">CH-01
+                    </div>
+                    <div class="hexagon-pattern default-icon">
+                        <div class="honeycomb-bg"></div>
+                        <div class="hex-item safe">
+                            <div class="hex-item-inner text-[20px] font-bold">通信</div>
+                        </div>
+                    </div>
+                    <div class="hover-icon">
+                        <div class="hexagon-pattern">
+                            <div class="honeycomb-bg"></div>
+                            <div class="hex-item danger">
+                                <div class="hex-item-inner text-[20px] font-bold">確認</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center w-full">
+                        <div class="text-[16px] text-white uppercase default-text">EMAIL PROTOCOL</div>
+                        <div class="text-[16px] uppercase hover-text font-bold">EXECUTE?</div>
+                        <div class="text-[11px] text-muted-gray mt-2 break-all">evanrahmanmn@gmail.com</div>
+                    </div>
+                    <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-border-dim"></div>
+                    <div class="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-border-dim"></div>
+                    <div class="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-border-dim"></div>
+                    <div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-border-dim"></div>
+                </a>
+
+                <!-- Contact Vote Tile 2 -->
+                <a class="magi-panel vote-tile min-h-[220px] h-auto flex flex-col items-center justify-between p-6 cursor-pointer relative"
+                    href="https://github.com/QuantumEvanster" target="_blank">
+                    <div class="text-[10px] text-border-dim font-status-code self-start absolute top-4 left-4">CH-02
+                    </div>
+                    <div class="hexagon-pattern default-icon">
+                        <div class="honeycomb-bg"></div>
+                        <div class="hex-item safe">
+                            <div class="hex-item-inner text-[20px] font-bold">記録</div>
+                        </div>
+                    </div>
+                    <div class="hover-icon">
+                        <div class="hexagon-pattern">
+                            <div class="honeycomb-bg"></div>
+                            <div class="hex-item danger">
+                                <div class="hex-item-inner text-[20px] font-bold">確認</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center w-full">
+                        <div class="text-[16px] text-white uppercase default-text">GITHUB ARCHIVE</div>
+                        <div class="text-[16px] uppercase hover-text font-bold">EXECUTE?</div>
+                        <div class="text-[11px] text-muted-gray mt-2 break-all">github.com/QuantumEvanster</div>
+                    </div>
+                    <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-border-dim"></div>
+                    <div class="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-border-dim"></div>
+                    <div class="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-border-dim"></div>
+                    <div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-border-dim"></div>
+                </a>
+
+                <!-- Contact Vote Tile 3 -->
+                <a class="magi-panel vote-tile min-h-[220px] h-auto flex flex-col items-center justify-between p-6 cursor-pointer relative"
+                    href="https://www.linkedin.com/in/evan-r-437279340/" target="_blank">
+                    <div class="text-[10px] text-border-dim font-status-code self-start absolute top-4 left-4">CH-03
+                    </div>
+                    <div class="hexagon-pattern default-icon">
+                        <div class="honeycomb-bg"></div>
+                        <div class="hex-item safe">
+                            <div class="hex-item-inner text-[20px] font-bold">接続</div>
+                        </div>
+                    </div>
+                    <div class="hover-icon">
+                        <div class="hexagon-pattern">
+                            <div class="honeycomb-bg"></div>
+                            <div class="hex-item danger">
+                                <div class="hex-item-inner text-[20px] font-bold">確認</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center w-full">
+                        <div class="text-[16px] text-white uppercase default-text">LINKEDIN NETWORK</div>
+                        <div class="text-[16px] uppercase hover-text font-bold">EXECUTE?</div>
+                        <div class="text-[11px] text-muted-gray mt-2 break-all">linkedin.com/in/evan-r-437279340</div>
+                    </div>
+                    <div class="absolute top-0 left-0 w-6 h-6 border-t-2 border-l-2 border-border-dim"></div>
+                    <div class="absolute top-0 right-0 w-6 h-6 border-t-2 border-r-2 border-border-dim"></div>
+                    <div class="absolute bottom-0 left-0 w-6 h-6 border-b-2 border-l-2 border-border-dim"></div>
+                    <div class="absolute bottom-0 right-0 w-6 h-6 border-b-2 border-r-2 border-border-dim"></div>
+                </a>
+            </div>
+
+            <div class="mt-16 max-w-2xl mx-auto pb-4">
+                <div class="text-[10px] text-border-dim font-status-code mb-2 text-center">[SWIPE TO INITIATE WHATSAPP
+                    COMMS]</div>
+                <div id="wa-slider-container"
+                    class="relative w-full h-[60px] bg-black border border-border-dim overflow-hidden touch-none group">
+                    <div class="absolute inset-0 hazard-stripe opacity-10 pointer-events-none"></div>
+                    <div id="wa-slider-track"
+                        class="absolute top-0 left-0 h-full bg-primary-container/20 w-0 pointer-events-none transition-none border-r border-primary-container">
+                    </div>
+                    <div id="wa-slider-text"
+                        class="absolute inset-0 flex items-center justify-center font-bold text-primary-container text-[14px] md:text-[18px] tracking-widest pointer-events-none select-none z-10 transition-opacity">
+                        SWIPE TO CONTACT
+                    </div>
+                    <div id="wa-slider-thumb"
+                        class="absolute top-0 left-0 h-full w-[80px] bg-primary-container border-2 border-[#f06800] flex items-center justify-center cursor-grab active:cursor-grabbing z-20 shadow-[0_0_15px_rgba(236,116,32,0.5)] transition-none group-hover:bg-[#ffb68e]">
+                        <span class="text-black font-bold text-[24px]">»</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer
+        class="w-full py-4 px-4 md:px-gutter flex flex-col items-center gap-2 border-t-2 border-hazard-red bg-black relative z-10">
+        <div class="flex gap-4">
+            <a class="text-[10px] font-status-code text-muted-gray hover:text-primary transition-colors uppercase"
+                href="#">[TERMINAL]</a>
+            <a class="text-[10px] font-status-code text-muted-gray hover:text-primary transition-colors uppercase"
+                href="#">[LOGS]</a>
+            <button
+                class="text-[10px] font-status-code text-eva-crimson hover:text-white transition-colors uppercase font-bold"
+                onclick="triggerEmergency()">[DESTRUCT PROTOCOL]</button>
+        </div>
+        <div class="text-[10px] font-status-code text-hazard-red uppercase mt-2 text-center max-w-full">
+            NERV HQ — 2026 — EVAN RAHMAN — ALL SYSTEMS NOMINAL
+        </div>
+    </footer>
+    <script src="main.js"></script>
+</body>
+
+</html>
